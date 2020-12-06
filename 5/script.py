@@ -9,13 +9,9 @@ Lines = f.readlines()
 ids = []
 for line in Lines:
 
-    row_str = line[:7].replace("F", "0").replace("B", "1")
-    col_str = line[7:].replace("L", "0").replace("R", "1")
-
-    row = int(row_str, 2)
-    col = int(col_str, 2)
-
-    ids.append(row * 8 + col)
+    id_str = line.replace("F", "0").replace("B", "1").replace("L", "0").replace("R", "1")
+    id_decimal = int(id_str, 2)
+    ids.append(id_decimal)
 
 max_id = max(ids)
 print("part1: " + str(max_id))
