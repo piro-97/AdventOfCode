@@ -69,6 +69,7 @@ already_processed_colors = []
 for rule in rules:
     if rule['outer'] not in already_processed_colors:
         count += can_contain_color(rule['outer'], my_color)
+        already_processed_colors.append(rule['outer'])
 
 print("part 1: " + str(count))
 
