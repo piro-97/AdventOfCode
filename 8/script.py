@@ -1,5 +1,4 @@
 import os
-import re
 
 f = open(os.getcwd() + "/8/input.txt", "r")
 Lines = f.readlines()
