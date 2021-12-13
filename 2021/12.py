@@ -9,7 +9,7 @@ class Node:
         self.small = not name.isupper()
     
     def __str__(self):
-        return f"{self.name}"
+        return self.name
 
 # part 1
 def explore(end :Node, path :"list[Node]") -> int:
@@ -28,7 +28,6 @@ def explore(end :Node, path :"list[Node]") -> int:
 # part 2
 def explore2(end :Node, path :"list[Node]") -> int:
     current_node = path[-1]
-    
     if current_node == end:
         return 1
 
