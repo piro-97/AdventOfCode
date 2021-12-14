@@ -7,5 +7,5 @@ def read_input(day :int) -> "list[str]":
         return list( map(lambda x : x.replace("\n", ""), f.readlines()))
 
 
-def print_answer(part :int, value :float) -> None:
+def print_answer(part :int, value) -> None:
     print(f"PART {part} -> {value}")
