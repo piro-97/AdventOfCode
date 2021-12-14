@@ -4,10 +4,11 @@ from collections import defaultdict
 DAY = 14
 
 SOLVED = {}
+RULES = {}
 
-def print_solved():
-    for k in SOLVED.keys():
-        print(f"{k} -> {dict(SOLVED[k])}")
+# def print_solved():
+#     for k in SOLVED.keys():
+#         print(f"{k} -> {dict(SOLVED[k])}")
 
 
 def merge_dict(d1 :dict, d2 :dict) -> dict:
@@ -18,17 +19,17 @@ def merge_dict(d1 :dict, d2 :dict) -> dict:
     return dict(d_2)
 
 
-def deep_explore(letter_pair :str, insertion_rules :dict, current_depth :int, target_depth :int) -> dict:
+def deep_explore(letter_pair :str, current_depth :int, target_depth :int) -> dict:
     if current_depth == target_depth:   # generation depth limit reached
         return {}
 
     if (letter_pair, target_depth - current_depth) in SOLVED.keys():    # I already generated the solution for this pair 
         return SOLVED[ (letter_pair, target_depth - current_depth) ]
 
-    generated_letter = insertion_rules[letter_pair]
+    generated_letter = RULES[letter_pair]
     count = {generated_letter : 1}
-    count_below_l = deep_explore(letter_pair[0] + generated_letter, insertion_rules, current_depth + 1, target_depth)
-    count_below_r = deep_explore(generated_letter + letter_pair[1], insertion_rules, current_depth + 1, target_depth)
+    count_below_l = deep_explore(letter_pair[0] + generated_letter, current_depth + 1, target_depth)
+    count_below_r = deep_explore(generated_letter + letter_pair[1], current_depth + 1, target_depth)
     sol = merge_dict(count_below_l, count_below_r)
     sol = merge_dict(sol, count)
 
@@ -39,7 +40,7 @@ def deep_explore(letter_pair :str, insertion_rules :dict, current_depth :int, ta
 def run(string :str, iterations :int) -> dict:
     d = {}
     for i in range(len(string) - 1):
-        d = merge_dict(d, deep_explore(polymer[i:i+2], rules, 0, iterations))
+        d = merge_dict(d, deep_explore(polymer[i:i+2], 0, iterations))
     for c in string:
         d[c] += 1
     return d
@@ -47,10 +48,9 @@ def run(string :str, iterations :int) -> dict:
 
 lines = utils.read_input(DAY)
 polymer = lines[0]
-rules = {}
 for line in lines[2:]:
     l = line.replace(" ", "").split("->")
-    rules[l[0]] = l[1]
+    RULES[l[0]] = l[1]
 
 # part 1
 d = run(polymer, 10)
