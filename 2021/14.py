@@ -40,7 +40,7 @@ def deep_explore(letter_pair :str, current_depth :int, target_depth :int) -> dic
 def run(string :str, iterations :int) -> dict:
     d = {}
     for i in range(len(string) - 1):
-        d = merge_dict(d, deep_explore(polymer[i:i+2], 0, iterations))
+        d = merge_dict(d, deep_explore(string[i:i+2], 0, iterations))
     for c in string:
         d[c] += 1
     return d
@@ -49,7 +49,7 @@ def run(string :str, iterations :int) -> dict:
 lines = utils.read_input(DAY)
 polymer = lines[0]
 for line in lines[2:]:
-    l = line.replace(" ", "").split("->")
+    l = line.split(" -> ")
     RULES[l[0]] = l[1]
 
 # part 1
