@@ -74,13 +74,8 @@ def dijkstra(matrix :np.ndarray, start :tuple, end :tuple) -> int:
     return distances[end]
 
 
-lines = utils.read_input(DAY)
-SHAPE = (len(lines), len(lines[0]))
-matrix = np.zeros(SHAPE, dtype=int)
-for i in range(SHAPE[0]):
-    for j in range(SHAPE[1]):
-        matrix[i,j] = lines[i][j]
-        
+matrix = utils.to_np_array(utils.read_input(DAY))
+
 # part 1
 start = (0,0)
 end = (matrix.shape[0]-1, matrix.shape[1]-1)
