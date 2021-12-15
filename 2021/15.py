@@ -19,7 +19,7 @@ def tiled_matrix(original :np.ndarray, growth_factor=5) -> np.ndarray:
     return matrix_2
 
 
-def neighbours(index :"tuple[int,int]", shape :tuple) -> "set[tuple[int,int]]":
+def neighbours(index :"tuple", shape :tuple) -> "set[tuple]":
     x,y = index
     ne = set()
     if x > 0:
