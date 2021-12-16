@@ -1,18 +1,11 @@
 import utils
 from functools import reduce
+from operator import add, mul, gt, lt, eq
 
 DAY = 16
 
-OPERATIONS = [
-    lambda x,y : x+y,           # sum subpackets
-    lambda x,y : x*y,           # multiply subpackets
-    lambda x,y : min(x,y),      # minimum of subpackets
-    lambda x,y : max(x,y),      # maximum of subpackets
-    None,                       # value packet
-    lambda x,y : int(x>y),      # greater then
-    lambda x,y : int(x<y),      # less then
-    lambda x,y : int(x==y),     # equal to
-]
+OPERATIONS = [ add, mul, min, max, None, gt, lt, eq ]
+
 
 def decode_value(string :str) -> tuple:
     """returns decimal value and length of string consumed"""
@@ -29,7 +22,9 @@ def decode(string :str) -> dict:
     """returns a packet as a dictionary"""
     p_version = int(string[:3], 2)
     p_type = int(string[3:6], 2)
-    p_value, p_length, p_operation = 0, 6, None
+    p_length = 6
+    p_value= None
+    p_operation = OPERATIONS[p_type]
     p_subpackets = []
     
     if p_type == 4: # value packet
@@ -38,7 +33,6 @@ def decode(string :str) -> dict:
     
     else:   # operation packet
         p_length_type = string[6]
-        p_operation = OPERATIONS[p_type]
 
         if p_length_type == "0":    # subpackets defined by length of string
             sub_p_length = int(string[7:22], 2)
@@ -80,7 +74,7 @@ def compute(packet :dict) -> int:
 
     for p in packet["subpackets"]:
         p["value"] = compute(p)
-    
+
     packet["value"] = reduce( packet["operation"], map(lambda p : p["value"], packet["subpackets"]) )
 
     return packet["value"]
