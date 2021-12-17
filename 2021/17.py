@@ -8,6 +8,7 @@ MAX_X = 100
 MAX_Y = 300
 MIN_Y = -300
 
+
 def next_position(position :tuple, velocity :tuple) -> tuple:
     return (position[0] + velocity[0], position[1] + velocity[1])
 
@@ -33,7 +34,7 @@ def may_reach_target(position :tuple, target :tuple, velocity :tuple) -> bool:
     x1, x2 = target["x"]
     y1, y2 = target["y"]
     v_x, v_y = velocity
-    impossible = (x > x2 and v_x >= 0) or (x < x1 and v_x <= 0) or (y < y1 and v_y < 0)
+    impossible = (x > x2 and v_x >= 0) or (x < x1 and v_x <= 0) or (y < y1 and v_y <= 0)
     return not impossible
 
 
