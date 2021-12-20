@@ -38,6 +38,9 @@ for i,line in enumerate(lines[2:]):
     for j,c in enumerate(line):
         input[(i,j)] = (c == "#")
 
+if algo[0] and algo[-1]:
+    print("the answer is: infty")
+    exit(0)
 
 for i in range(ITER_2):
     out = defaultdict(lambda : switch)
@@ -54,5 +57,3 @@ for i in range(ITER_2):
 
 # part 2
 utils.print_answer(2, sum(out.values()))
-
-
