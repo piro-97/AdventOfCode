@@ -8,7 +8,6 @@ class Configuration:
     def __init__(self, position_1 :int, position_2 :int):
         self.position_1, self.position_2 = position_1, position_2
         self.score_1, self.score_2 = 0, 0
-        self.history_1, self.history_2 = [], []
         self.turn = True
 
     def winner(self, win_threshold :int) -> int:    # returns the id of the winner, 0 if match is not over
@@ -23,17 +22,14 @@ class Configuration:
         if self.turn:
             self.position_1 = (self.position_1 + dice_val) % 10
             self.score_1 += self.position_1 if self.position_1 != 0 else 10
-            self.history_1.append(dice_val)
         else:
             self.position_2 = (self.position_2 + dice_val) % 10
             self.score_2 += self.position_2 if self.position_2 != 0 else 10
-            self.history_2.append(dice_val)
     
         self.turn = not self.turn
     
     def __copy__(self):
         c = Configuration(self.position_1, self.position_2)
-        c.history_1, c.history_2 = self.history_1.copy(), self.history_2.copy()
         c.score_1, c.score_2 = self.score_1, self.score_2
         c.turn = self.turn
         return c
