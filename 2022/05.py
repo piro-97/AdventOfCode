@@ -1,7 +1,8 @@
-import utils
-import numpy as np
 import re
 from copy import deepcopy
+
+import numpy as np
+import utils
 
 DAY = 5
 

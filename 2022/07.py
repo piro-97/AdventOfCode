@@ -1,6 +1,7 @@
-import utils
 import re
 import sys
+
+import utils
 
 DAY = 7
 
@@ -91,9 +92,3 @@ used_space = root.space()
 required_space = 30000000
 
 utils.print_answer(2, root.smallest_deletable(-disk_space + used_space + required_space))
-
-
-
-
-
-

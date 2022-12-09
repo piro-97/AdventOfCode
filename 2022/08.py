@@ -1,6 +1,7 @@
-import utils
-import numpy as np
 import math
+
+import numpy as np
+import utils
 
 DAY = 8
 
