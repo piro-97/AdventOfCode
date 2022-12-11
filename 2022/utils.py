@@ -7,7 +7,7 @@ def read_input(day :int, keep_eol=False) -> "list[str]":
     print(f"reading input from -> {input_path}")
 
     with open(input_path, "r") as f:
-        return list( map(lambda x : x.replace("\n", "") if not keep_eol else x, f.readlines()))
+        return list( map(lambda x : x.replace("\n", "") if not keep_eol else x, f.readlines()) )
 
 
 def print_answer(part :int, value) -> None:
