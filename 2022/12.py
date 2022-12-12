@@ -45,7 +45,7 @@ def neighbours_descend(idx :tuple[int,int], grid :np.ndarray):
             yield (n, COST)
 
 
-def grid_to_graph(grid :np.ndarray, neighbours_function :callable) -> dict:    # TODO try to generalize this function removing the height condition
+def grid_to_graph(grid :np.ndarray, neighbours_function :callable) -> dict:
     graph = {}
     size_x, size_y = grid.shape
 
