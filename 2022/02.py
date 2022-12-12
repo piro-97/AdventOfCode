@@ -56,5 +56,3 @@ for game in games:
 
 utils.print_answer(1, sum(results1))
 utils.print_answer(2, sum(results2))
-
-
