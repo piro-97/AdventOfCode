@@ -1,1 +1,1 @@
-### [AdventOfCode2021](https://adventofcode.com)
+### [AdventOfCode](https://adventofcode.com)

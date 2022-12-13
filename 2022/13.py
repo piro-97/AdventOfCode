@@ -34,12 +34,9 @@ packets = list(map(ast.literal_eval, lines[::3])) + list(map(ast.literal_eval, l
 size = len(packets)
 pairs = zip(packets[:size//2], packets[size//2:])
 
-ordered = []
-for i,p in enumerate(pairs):
-    if pair_precedence(p[0], p[1]) < 0:
-        ordered.append(i+1)
-
+ordered = [i+1 for i,p in enumerate(pairs) if pair_precedence(p[0], p[1]) <0]
 utils.print_answer(1, sum(ordered))
+
 
 # Part 2
 marker1 = [[2]]
